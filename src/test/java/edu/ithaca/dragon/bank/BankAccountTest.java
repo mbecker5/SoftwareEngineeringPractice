@@ -24,23 +24,23 @@ class BankAccountTest {
     @Test
     void isEmailValidTest(){
 
-        assertTrue(BankAccount.isEmailValid( "a@b.com"));
+        assertTrue(BankAccount.isEmailValid( "a@c.com"));
 
         //testing prefix
         //numbers, letters, underscore, periods and dashes are ok
         //an underscore, period or dash must be followed by one or more numbers or letters
-        assertFalse( BankAccount.isEmailValid("a-@b.com"));
+        assertFalse( BankAccount.isEmailValid("a-@c.com"));
         assertFalse(BankAccount.isEmailValid("a..b@c.com"));
-        assertFalse( BankAccount.isEmailValid(".a@b.com"));
+        assertFalse( BankAccount.isEmailValid(".a@c.com"));
         assertFalse(BankAccount.isEmailValid("a#b@c.com"));
 
         //testing incorrect domain
         //letters, numbers and dashes are ok
         //the last portion of the domain must be at least two characters
-        assertFalse( BankAccount.isEmailValid("a@b.c"));
-        assertFalse(BankAccount.isEmailValid("a@b#c.com"));
-        assertFalse( BankAccount.isEmailValid("a@b"));
-        assertFalse(BankAccount.isEmailValid("a@b..com"));
+        assertFalse( BankAccount.isEmailValid("a@c.c"));
+        assertFalse(BankAccount.isEmailValid("a@c#c.com"));
+        assertFalse( BankAccount.isEmailValid("a@c"));
+        assertFalse(BankAccount.isEmailValid("a@c..com"));
 
         //no email at all
         assertFalse( BankAccount.isEmailValid(""));
