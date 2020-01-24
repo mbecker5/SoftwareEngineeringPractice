@@ -36,9 +36,27 @@ public class BankAccount {
 
 
     public static boolean isEmailValid(String email){
-        if (email.indexOf('@') == -1){
+        if (email.indexOf('@') == -1) {
             return false;
         }
+        else if (email.charAt(0) == '.') {
+            return false;
+        }
+        else if (email.charAt(1) == '-') {
+            return false;
+        }
+        else if (email.indexOf('#') != -1) {
+            return false;
+        }
+        else if (email.charAt(email.indexOf('.') + 1) == '.') {
+            return false;
+        }
+        else if (email.length() <= email.indexOf('@') + 4){
+            return false;
+        }
+        //else if (email.charAt(email.indexOf('@')+2) == '.'){
+        //return false;
+        //}
         else {
             return true;
         }
