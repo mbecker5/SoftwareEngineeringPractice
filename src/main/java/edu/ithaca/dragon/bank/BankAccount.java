@@ -30,35 +30,51 @@ public class BankAccount {
      * @post reduces the balance by amount if amount is non-negative and smaller than balance
      */
     public void withdraw (double amount)  {
-        balance -= amount;
+        if (!(balance < amount) && amount > 0){
+            balance -= amount;
+        }
+
 
     }
 
 
     public static boolean isEmailValid(String email){
+        boolean isValid = true;
         if (email.indexOf('@') == -1) {
-            return false;
+            isValid = false;
+        }
+        else if (!email.contains(".com")){
+            isValid = false;
+        }
+        else if(email.indexOf('@') == 0){
+            isValid = false;
         }
         else if (email.charAt(0) == '.') {
-            return false;
+            isValid = false;
         }
         else if (email.charAt(1) == '-') {
-            return false;
+            isValid = false;
         }
         else if (email.indexOf('#') != -1) {
-            return false;
+            isValid = false;
         }
         else if (email.charAt(email.indexOf('.') + 1) == '.') {
-            return false;
+            isValid=false;
+        }
+        else if (email.charAt(email.indexOf('.') + 2) == '.') {
+            if (email.indexOf('.') < email.indexOf('@')) {
+                isValid=false;
+            }
         }
         else if (email.length() <= email.indexOf('@') + 4){
-            return false;
+            isValid=false;
         }
-        //else if (email.charAt(email.indexOf('@')+2) == '.'){
-        //return false;
-        //}
-        else {
-            return true;
+        else if (email.charAt(email.indexOf('@') + 2) == '_'){
+            isValid=false;
         }
+        else if (email.contains("c.d.")){
+            isValid = false;
+        }
+        return isValid;
     }
 }

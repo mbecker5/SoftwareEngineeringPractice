@@ -115,14 +115,14 @@ class BankAccountTest {
 
         //missing borders:
         //domain having multiple characters
-        assertFalse( BankAccount.isEmailValid("a.b@cdf.com"));
+        assertTrue( BankAccount.isEmailValid("a.b@cdf.com"));
         assertFalse( BankAccount.isEmailValid("a.b@c_f.com"));
         assertFalse( BankAccount.isEmailValid("a.b@c.d.com"));
 
         //testing 0 #'s, testing multiple #'s
         assertTrue( BankAccount.isEmailValid("a.b123@cdf.com"));
-        assertTrue( BankAccount.isEmailValid("a2.b@c_f.com"));
-        assertTrue( BankAccount.isEmailValid("a.b000@c.d.com"));
+        assertFalse( BankAccount.isEmailValid("a2.b@c_f.com"));
+        assertFalse( BankAccount.isEmailValid("a.b000@c.d.com"));
         assertTrue( BankAccount.isEmailValid("a.b@cdf1234.com"));
         assertTrue( BankAccount.isEmailValid("a.b@c0000000000f.com"));
         assertTrue( BankAccount.isEmailValid("a.b@c-123434986.com"));
