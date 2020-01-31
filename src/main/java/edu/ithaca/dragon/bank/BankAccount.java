@@ -33,8 +33,6 @@ public class BankAccount {
         if (!(balance < amount) && amount > 0){
             balance -= amount;
         }
-
-
     }
 
 
@@ -77,4 +75,16 @@ public class BankAccount {
         }
         return isValid;
     }
+
+    /**
+     * checks if the amount entered is a valid double amount greater than 0 and no more than two decimal points
+     * @param amount
+     * @return isValid
+     */
+
+    public static boolean isAmountValid(double amount){
+        return false;
+    }
+
 }
+

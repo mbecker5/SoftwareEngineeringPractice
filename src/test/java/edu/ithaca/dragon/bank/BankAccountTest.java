@@ -129,8 +129,66 @@ class BankAccountTest {
 
         //no email at all
         assertFalse( BankAccount.isEmailValid(""));
+    }
 
+    @Test
+    void isValidAmountTest(){
+        //check for negatives
+        assertFalse( BankAccount.isAmountValid(-1));
+        assertFalse( BankAccount.isAmountValid(-100));
+        assertFalse( BankAccount.isAmountValid(-1000));
+        assertFalse( BankAccount.isAmountValid(-10000));
+        assertFalse( BankAccount.isAmountValid(-28295));
+        assertFalse( BankAccount.isAmountValid(-1234));
+        assertFalse( BankAccount.isAmountValid(-9867));
 
+        //check for zero
+        assertFalse( BankAccount.isAmountValid(0));
+
+        //check for large numbers
+        assertTrue( BankAccount.isAmountValid(100000));
+        assertTrue( BankAccount.isAmountValid(100001));
+        assertTrue( BankAccount.isAmountValid(10000));
+        assertTrue( BankAccount.isAmountValid(15000));
+        assertTrue( BankAccount.isAmountValid(573930));
+        assertTrue( BankAccount.isAmountValid(10000001));
+
+        //check for positive numbers with large decimals
+        assertFalse( BankAccount.isAmountValid(10.000));
+        assertTrue( BankAccount.isAmountValid(10.00));
+        assertFalse( BankAccount.isAmountValid(11003.123443));
+        assertFalse( BankAccount.isAmountValid(54303.7631346));
+        assertFalse( BankAccount.isAmountValid(7654.3333333333));
+
+        //check for negative numbers with large decimals
+        assertFalse( BankAccount.isAmountValid(-100.0000));
+        assertFalse( BankAccount.isAmountValid(-1000.54326));
+        assertFalse( BankAccount.isAmountValid(-10000.333333333));
+        assertFalse( BankAccount.isAmountValid(-28295.000));
+        assertFalse( BankAccount.isAmountValid(-1234.001));
+        assertFalse( BankAccount.isAmountValid(-9867.6534298773));
+
+        //check for just decimal values
+        assertFalse( BankAccount.isAmountValid(.101));
+        assertFalse( BankAccount.isAmountValid(.105));
+        assertFalse( BankAccount.isAmountValid(.2345));
+        assertTrue( BankAccount.isAmountValid(.10));
+        assertTrue( BankAccount.isAmountValid(.99));
+        assertTrue( BankAccount.isAmountValid(.01));
+        assertFalse( BankAccount.isAmountValid(.0));
+        assertFalse( BankAccount.isAmountValid(.1));
+
+        //check for proper values
+        assertTrue( BankAccount.isAmountValid(7.86));
+        assertTrue( BankAccount.isAmountValid(34.56));
+        assertTrue( BankAccount.isAmountValid(10.99));
+        assertTrue( BankAccount.isAmountValid(1.00));
+        assertTrue( BankAccount.isAmountValid(100.00));
+        assertTrue( BankAccount.isAmountValid(1500.00));
+        assertTrue( BankAccount.isAmountValid(10000.76));
+        assertTrue( BankAccount.isAmountValid(28295.94));
+        assertTrue( BankAccount.isAmountValid(1234.01));
+        assertTrue( BankAccount.isAmountValid(9867.36));
     }
 
     @Test
